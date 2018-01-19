@@ -61,11 +61,11 @@ namespace Files
             openFileDialog1.Title = "Open Audio File";
             openFileDialog1.RestoreDirectory = true;
 
-            if (openFileDialog1.ShowDialog() == DialogResult.OK);
+            if (openFileDialog1.ShowDialog() == DialogResult.OK) ;
             {
                 pthtb.Text = openFileDialog1.FileName;
             }
-        
+
         }
     }
 }
