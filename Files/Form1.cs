@@ -10,6 +10,7 @@ namespace Files
     {
         public Form1()
         {
+            InitializeComponent();
         }
 
         private void sabtn1_Click(object sender, EventArgs e)
