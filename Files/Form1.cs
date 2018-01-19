@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using System.IO;
 using System.Media;
+using System.Drawing;
 
 namespace Files
 {
@@ -49,6 +50,7 @@ namespace Files
             SoundPlayer play = new SoundPlayer(pthtb.Text);
 
             play.Play();
+            pbtn.BackColor = Color.Red;
         }
 
         public void bwsbtn1_Click(object sender, EventArgs e)
