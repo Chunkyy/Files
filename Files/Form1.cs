@@ -54,7 +54,7 @@ namespace Files
             SoundPlayer play = new SoundPlayer(@"E:\\Code\\Windows application\\Files\\Play.wav");
 
             play.Play();
-            pbtn.BackColor = Color.Red;
+            pbtn.BackColor = Color.red;
         }
     }
 }
