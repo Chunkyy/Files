@@ -9,7 +9,6 @@ namespace Files
     {
         public Form1()
         {
-            InitializeComponent();
         }
 
         private void sabtn1_Click(object sender, EventArgs e)
@@ -45,9 +44,8 @@ namespace Files
         {
         }
 
-        private void pbtn_Click(object sender, EventArgs e)
+        public void pbtn_Click(object sender, EventArgs e)
         {
-            //changed the comment
             SoundPlayer play = new SoundPlayer(pthtb.Text);
 
             play.Play();
