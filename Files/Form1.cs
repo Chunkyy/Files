@@ -53,24 +53,21 @@ namespace Files
 
             play.Play();
             pbtn.BackColor = Color.Red;
+            pbtn.ForeColor = Color.White;
 
             System.Timers.Timer aTimer = new System.Timers.Timer();
-            aTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
             aTimer.Interval = 1000;
-            aTimer.Enabled = true;        
+            aTimer.Enabled = true;
+            aTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
 
         }
 
         private void OnTimedEvent(object sender, ElapsedEventArgs e)
         {
-            if (pbtn.BackColor == Color.Red)
-            {
-                ButtonColourRed = true;
-            }
-
-            if (ButtonColourRed == true)
+            if (pbtn.BackColor == Color.Red && pbtn.ForeColor == Color.White)
             {
                 pbtn.BackColor = SystemColors.ButtonFace;
+                pbtn.ForeColor = Color.Black;
             }
         }
 
@@ -86,7 +83,5 @@ namespace Files
                 pthtb.Text = openFileDialog1.FileName;
             }
         }
-
-        bool ButtonColourRed = false;
     }
 }
