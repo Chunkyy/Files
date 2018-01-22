@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using System.IO;
 using System.Media;
+using System.Drawing;
 
 namespace Files
 {
@@ -53,6 +54,7 @@ namespace Files
             SoundPlayer play = new SoundPlayer(@"E:\\Code\\Windows application\\Files\\Play.wav");
 
             play.Play();
+            pbtn.BackColor = Color.red;
         }
     }
 }
