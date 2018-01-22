@@ -11,9 +11,6 @@ namespace Files
         public Form1()
         {
             InitializeComponent();
-
-            //GitHub change comment
-            //add comment github branch
         }
 
         private void sabtn1_Click(object sender, EventArgs e)
@@ -49,12 +46,26 @@ namespace Files
         {
         }
 
-        private void pbtn_Click(object sender, EventArgs e)
+        public void pbtn_Click(object sender, EventArgs e)
         {
-            SoundPlayer play = new SoundPlayer(@"E:\\Code\\Windows application\\Files\\Play.wav");
+            SoundPlayer play = new SoundPlayer(pthtb.Text);
 
             play.Play();
-            pbtn.BackColor = Color.red;
+            pbtn.BackColor = Color.Red;
+        }
+
+        public void bwsbtn1_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.InitialDirectory = "E:\\Code\\";
+            openFileDialog1.Filter = "Wav File|*.wav";
+            openFileDialog1.Title = "Open Audio File";
+            openFileDialog1.RestoreDirectory = true;
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK) ;
+            {
+                pthtb.Text = openFileDialog1.FileName;
+            }
+
         }
     }
 }
