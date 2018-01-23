@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using System.IO;
 using System.Media;
 using System.Drawing;
+using System.Timers;
 
 namespace Files
 {
@@ -24,7 +25,7 @@ namespace Files
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
                 File.WriteAllText(saveFileDialog.FileName, tb1.Text);
-            }            
+            }
         }
 
         public void opbtn1_Click(object sender, EventArgs e)
@@ -52,11 +53,27 @@ namespace Files
 
             play.Play();
             pbtn.BackColor = Color.Red;
+            pbtn.ForeColor = Color.White;
+
+            System.Timers.Timer aTimer = new System.Timers.Timer();
+            aTimer.Interval = 1000;
+            aTimer.Enabled = true;
+            aTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
+
+        }
+
+        private void OnTimedEvent(object sender, ElapsedEventArgs e)
+        {
+            if (pbtn.BackColor == Color.Red && pbtn.ForeColor == Color.White)
+            {
+                pbtn.BackColor = SystemColors.ButtonFace;
+                pbtn.ForeColor = Color.Black;
+            }
         }
 
         public void bwsbtn1_Click(object sender, EventArgs e)
         {
-            openFileDialog1.InitialDirectory = "E:\\Code\\";
+            openFileDialog1.InitialDirectory = "E:\\Code\\Windows application\\Files";
             openFileDialog1.Filter = "Wav File|*.wav";
             openFileDialog1.Title = "Open Audio File";
             openFileDialog1.RestoreDirectory = true;
@@ -65,7 +82,6 @@ namespace Files
             {
                 pthtb.Text = openFileDialog1.FileName;
             }
-
         }
     }
 }
