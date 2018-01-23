@@ -9,6 +9,7 @@ namespace Files
 {
     public partial class Form1 : Form
     {
+        private System.Timers.Timer aTimer = null;
         public Form1()
         {
             InitializeComponent();
@@ -55,20 +56,23 @@ namespace Files
             pbtn.BackColor = Color.Red;
             pbtn.ForeColor = Color.White;
 
-            System.Timers.Timer aTimer = new System.Timers.Timer();
+            aTimer = new System.Timers.Timer();
+            aTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
             aTimer.Interval = 1000;
             aTimer.Enabled = true;
-            aTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
-
+            aTimer.Start();
         }
 
-        private void OnTimedEvent(object sender, ElapsedEventArgs e)
+        public void OnTimedEvent(object sender, ElapsedEventArgs e)
         {
             if (pbtn.BackColor == Color.Red && pbtn.ForeColor == Color.White)
             {
                 pbtn.BackColor = SystemColors.ButtonFace;
                 pbtn.ForeColor = Color.Black;
             }
+
+            aTimer.Elapsed -= new ElapsedEventHandler(OnTimedEvent);
+            aTimer = null;
         }
 
         public void bwsbtn1_Click(object sender, EventArgs e)
@@ -78,7 +82,7 @@ namespace Files
             openFileDialog1.Title = "Open Audio File";
             openFileDialog1.RestoreDirectory = true;
 
-            if (openFileDialog1.ShowDialog() == DialogResult.OK) ;
+            if (openFileDialog1.ShowDialog() == DialogResult.OK);
             {
                 pthtb.Text = openFileDialog1.FileName;
             }
