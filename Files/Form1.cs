@@ -177,24 +177,34 @@ namespace Files
 
         private void toprb_CheckedChanged(object sender, EventArgs e)
         {
-            opbtn1.Enabled = true;
-            sabtn1.Enabled = true;
-            tb1.Enabled = true;
-
-            bwsbtn1.Enabled = false;
-            pthtb.Enabled = false;
+            bottom_Fields();
             pbtn.Enabled = false;
         }
 
         private void btmrb_CheckedChanged(object sender, EventArgs e)
         {
-            bwsbtn1.Enabled = true;
-            pthtb.Enabled = true;
+            top_Fields();
+            pbtn.Enabled = false;
+        }
 
+        public void top_Fields()
+        {
+            tb1.Enabled = false;
             opbtn1.Enabled = false;
             sabtn1.Enabled = false;
-            tb1.Enabled = false;
-            pbtn.Enabled = false;
+
+            bwsbtn1.Enabled = true;
+            pthtb.Enabled = true;
+        }
+
+        public void bottom_Fields()
+        {
+            pthtb.Enabled = false;
+            bwsbtn1.Enabled = false;
+
+            opbtn1.Enabled = true;
+            sabtn1.Enabled = true;
+            tb1.Enabled = true;
         }
     }
 }
