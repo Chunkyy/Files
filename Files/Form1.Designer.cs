@@ -35,6 +35,7 @@
             this.pbtn = new System.Windows.Forms.Button();
             this.bwsbtn1 = new System.Windows.Forms.Button();
             this.pthtb = new System.Windows.Forms.TextBox();
+            this.pbtnsp = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // openFileDialog1
@@ -97,11 +98,22 @@
             this.pthtb.Size = new System.Drawing.Size(179, 20);
             this.pthtb.TabIndex = 5;
             // 
+            // pbtnsp
+            // 
+            this.pbtnsp.Location = new System.Drawing.Point(55, 142);
+            this.pbtnsp.Name = "pbtnsp";
+            this.pbtnsp.Size = new System.Drawing.Size(75, 23);
+            this.pbtnsp.TabIndex = 6;
+            this.pbtnsp.Text = "Play";
+            this.pbtnsp.UseVisualStyleBackColor = true;
+            this.pbtnsp.Click += new System.EventHandler(this.pbtnsp_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Controls.Add(this.pbtnsp);
             this.Controls.Add(this.pthtb);
             this.Controls.Add(this.bwsbtn1);
             this.Controls.Add(this.pbtn);
@@ -124,6 +136,7 @@
         private System.Windows.Forms.Button pbtn;
         private System.Windows.Forms.Button bwsbtn1;
         private System.Windows.Forms.TextBox pthtb;
+        private System.Windows.Forms.Button pbtnsp;
     }
 }
 

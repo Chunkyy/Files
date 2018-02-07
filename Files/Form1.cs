@@ -4,6 +4,7 @@ using System.IO;
 using System.Media;
 using System.Drawing;
 using System.Timers;
+using System.Speech.Synthesis;
 
 namespace Files
 {
@@ -108,6 +109,20 @@ namespace Files
             if (openFileDialog1.ShowDialog() == DialogResult.OK);
             {
                 pthtb.Text = openFileDialog1.FileName;
+            }
+        }
+
+        private void pbtnsp_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(tb1.Text))
+            {
+                SpeechSynthesizer speak = new SpeechSynthesizer();
+
+                speak.Speak(tb1.Text);
+            }
+            else
+            {
+                MessageBox.Show("Field is Empty.");
             }
         }
     }
