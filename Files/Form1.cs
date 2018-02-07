@@ -41,7 +41,13 @@ namespace Files
             openFileDialog1.RestoreDirectory = true;
             openFileDialog1.ShowDialog();
 
-            tb1.Text = File.ReadAllText(openFileDialog1.FileName);
+            string filepath = openFileDialog1.FileName;
+
+            if (!string.IsNullOrEmpty(filepath))
+            {
+                tb1.Text = File.ReadAllText(filepath);
+            }
+            
         }
 
         public void tb1_TextChanged(object sender, EventArgs e)
@@ -50,17 +56,34 @@ namespace Files
 
         public void pbtn_Click(object sender, EventArgs e)
         {
-            SoundPlayer play = new SoundPlayer(pthtb.Text);
+            string audiofile = pthtb.Text;
 
-            play.Play();
-            pbtn.BackColor = Color.Red;
-            pbtn.ForeColor = Color.White;
+            try
+            {
+                if (!string.IsNullOrEmpty(audiofile))
+                {
 
-            aTimer = new System.Timers.Timer();
-            aTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
-            aTimer.Interval = 1000;
-            aTimer.Enabled = true;
-            aTimer.Start();
+                    SoundPlayer play = new SoundPlayer(audiofile);
+
+                    play.Play();
+                    pbtn.BackColor = Color.Red;
+                    pbtn.ForeColor = Color.White;
+
+                    aTimer = new System.Timers.Timer();
+                    aTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
+                    aTimer.Interval = 1000;
+                    aTimer.Enabled = true;
+                    aTimer.Start();
+                }
+                else
+                {
+                    MessageBox.Show("No file selected");
+                }
+            }
+            catch (FileNotFoundException)
+            {
+                MessageBox.Show("File not found.");
+            }
         }
 
         public void OnTimedEvent(object sender, ElapsedEventArgs e)
