@@ -14,6 +14,10 @@ namespace Files
         public Form1()
         {
             InitializeComponent();
+            opbtn1.Enabled = false;
+            sabtn1.Enabled = false;
+            bwsbtn1.Enabled = false;
+            toprb.Checked = true;
         }
 
         private void sabtn1_Click(object sender, EventArgs e)
@@ -50,40 +54,68 @@ namespace Files
             }
             
         }
-
+        
         public void tb1_TextChanged(object sender, EventArgs e)
         {
+
+            if (!string.IsNullOrEmpty(tb1.Text))
+            {
+                pbtn.Enabled = true;
+            }
+            else
+            {
+                pbtn.Enabled = false;
+            }
         }
 
         public void pbtn_Click(object sender, EventArgs e)
         {
             string audiofile = pthtb.Text;
 
-            try
+            if (btmrb.Checked)
             {
-                if (!string.IsNullOrEmpty(audiofile))
+                try
                 {
+                    if (!string.IsNullOrEmpty(audiofile))
+                    {
+                        SoundPlayer play = new SoundPlayer(audiofile);
 
-                    SoundPlayer play = new SoundPlayer(audiofile);
+                        play.Play();
+                        pbtn.BackColor = Color.Red;
+                        pbtn.ForeColor = Color.White;
 
-                    play.Play();
-                    pbtn.BackColor = Color.Red;
-                    pbtn.ForeColor = Color.White;
+                        aTimer = new System.Timers.Timer();
+                        aTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
+                        aTimer.Interval = 1000;
+                        aTimer.Enabled = true;
+                        aTimer.Start();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No file selected");
+                    }
+                }
+                catch (FileNotFoundException)
+                {
+                    MessageBox.Show("File not found.");
+                }
+                catch (InvalidOperationException)
+                {
+                    MessageBox.Show("Invalid File");
+                }
+            }
+            else if (toprb.Checked)
+            {
+                if (!string.IsNullOrEmpty(tb1.Text))
+                {
+                    SpeechSynthesizer speak = new SpeechSynthesizer();
 
-                    aTimer = new System.Timers.Timer();
-                    aTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
-                    aTimer.Interval = 1000;
-                    aTimer.Enabled = true;
-                    aTimer.Start();
+                    speak.Speak(tb1.Text);
                 }
                 else
                 {
-                    MessageBox.Show("No file selected");
+                    MessageBox.Show("Field is Empty.");
                 }
-            }
-            catch (FileNotFoundException)
-            {
-                MessageBox.Show("File not found.");
             }
         }
 
@@ -91,8 +123,9 @@ namespace Files
         {
             if (pbtn.BackColor == Color.Red && pbtn.ForeColor == Color.White)
             {
-                pbtn.BackColor = SystemColors.ButtonFace;
-                pbtn.ForeColor = Color.Black;
+                pbtn.BackColor = SystemColors.Control;
+                pbtn.ForeColor = SystemColors.ControlText;
+                pbtn.UseVisualStyleBackColor = true;
             }
 
             aTimer.Elapsed -= new ElapsedEventHandler(OnTimedEvent);
@@ -112,18 +145,56 @@ namespace Files
             }
         }
 
-        private void pbtnsp_Click(object sender, EventArgs e)
-        {
-            if (!string.IsNullOrEmpty(tb1.Text))
-            {
-                SpeechSynthesizer speak = new SpeechSynthesizer();
+        public void pbtnsp_Click(object sender, EventArgs e)
+        {            
+        }
 
-                speak.Speak(tb1.Text);
+        private void pthtb_TextChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(pthtb.Text))
+            {
+                pbtn.Enabled = true;
             }
             else
             {
-                MessageBox.Show("Field is Empty.");
+                pbtn.Enabled = false;
             }
+        }
+
+        private void clrbtn_Click(object sender, EventArgs e)
+        {
+            if (toprb.Checked)
+            {
+                tb1.Clear();
+                pbtn.Enabled = false;
+            }
+            else if (btmrb.Checked)
+            {
+                pthtb.Clear();
+                pbtn.Enabled = false;
+            }
+        }
+
+        private void toprb_CheckedChanged(object sender, EventArgs e)
+        {
+            opbtn1.Enabled = true;
+            sabtn1.Enabled = true;
+            tb1.Enabled = true;
+
+            bwsbtn1.Enabled = false;
+            pthtb.Enabled = false;
+            pbtn.Enabled = false;
+        }
+
+        private void btmrb_CheckedChanged(object sender, EventArgs e)
+        {
+            bwsbtn1.Enabled = true;
+            pthtb.Enabled = true;
+
+            opbtn1.Enabled = false;
+            sabtn1.Enabled = false;
+            tb1.Enabled = false;
+            pbtn.Enabled = false;
         }
     }
 }

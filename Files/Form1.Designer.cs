@@ -35,7 +35,9 @@
             this.pbtn = new System.Windows.Forms.Button();
             this.bwsbtn1 = new System.Windows.Forms.Button();
             this.pthtb = new System.Windows.Forms.TextBox();
-            this.pbtnsp = new System.Windows.Forms.Button();
+            this.clrbtn = new System.Windows.Forms.Button();
+            this.toprb = new System.Windows.Forms.RadioButton();
+            this.btmrb = new System.Windows.Forms.RadioButton();
             this.SuspendLayout();
             // 
             // openFileDialog1
@@ -73,7 +75,8 @@
             // 
             // pbtn
             // 
-            this.pbtn.Location = new System.Drawing.Point(55, 226);
+            this.pbtn.BackColor = System.Drawing.SystemColors.Control;
+            this.pbtn.Location = new System.Drawing.Point(55, 212);
             this.pbtn.Name = "pbtn";
             this.pbtn.Size = new System.Drawing.Size(75, 23);
             this.pbtn.TabIndex = 3;
@@ -83,11 +86,11 @@
             // 
             // bwsbtn1
             // 
-            this.bwsbtn1.Location = new System.Drawing.Point(197, 183);
+            this.bwsbtn1.Location = new System.Drawing.Point(243, 183);
             this.bwsbtn1.Name = "bwsbtn1";
-            this.bwsbtn1.Size = new System.Drawing.Size(75, 23);
+            this.bwsbtn1.Size = new System.Drawing.Size(29, 23);
             this.bwsbtn1.TabIndex = 4;
-            this.bwsbtn1.Text = "Browse...";
+            this.bwsbtn1.Text = "...";
             this.bwsbtn1.UseVisualStyleBackColor = true;
             this.bwsbtn1.Click += new System.EventHandler(this.bwsbtn1_Click);
             // 
@@ -95,25 +98,52 @@
             // 
             this.pthtb.Location = new System.Drawing.Point(12, 183);
             this.pthtb.Name = "pthtb";
-            this.pthtb.Size = new System.Drawing.Size(179, 20);
+            this.pthtb.Size = new System.Drawing.Size(225, 20);
             this.pthtb.TabIndex = 5;
+            this.pthtb.TextChanged += new System.EventHandler(this.pthtb_TextChanged);
             // 
-            // pbtnsp
+            // clrbtn
             // 
-            this.pbtnsp.Location = new System.Drawing.Point(55, 142);
-            this.pbtnsp.Name = "pbtnsp";
-            this.pbtnsp.Size = new System.Drawing.Size(75, 23);
-            this.pbtnsp.TabIndex = 6;
-            this.pbtnsp.Text = "Play";
-            this.pbtnsp.UseVisualStyleBackColor = true;
-            this.pbtnsp.Click += new System.EventHandler(this.pbtnsp_Click);
+            this.clrbtn.Location = new System.Drawing.Point(197, 212);
+            this.clrbtn.Name = "clrbtn";
+            this.clrbtn.Size = new System.Drawing.Size(75, 23);
+            this.clrbtn.TabIndex = 7;
+            this.clrbtn.Text = "Clear";
+            this.clrbtn.UseVisualStyleBackColor = true;
+            this.clrbtn.Click += new System.EventHandler(this.clrbtn_Click);
+            // 
+            // toprb
+            // 
+            this.toprb.AutoSize = true;
+            this.toprb.Location = new System.Drawing.Point(12, 12);
+            this.toprb.Name = "toprb";
+            this.toprb.Size = new System.Drawing.Size(44, 17);
+            this.toprb.TabIndex = 8;
+            this.toprb.TabStop = true;
+            this.toprb.Text = "Top";
+            this.toprb.UseVisualStyleBackColor = true;
+            this.toprb.CheckedChanged += new System.EventHandler(this.toprb_CheckedChanged);
+            // 
+            // btmrb
+            // 
+            this.btmrb.AutoSize = true;
+            this.btmrb.Location = new System.Drawing.Point(62, 12);
+            this.btmrb.Name = "btmrb";
+            this.btmrb.Size = new System.Drawing.Size(58, 17);
+            this.btmrb.TabIndex = 9;
+            this.btmrb.TabStop = true;
+            this.btmrb.Text = "Bottom";
+            this.btmrb.UseVisualStyleBackColor = true;
+            this.btmrb.CheckedChanged += new System.EventHandler(this.btmrb_CheckedChanged);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
-            this.Controls.Add(this.pbtnsp);
+            this.Controls.Add(this.btmrb);
+            this.Controls.Add(this.toprb);
+            this.Controls.Add(this.clrbtn);
             this.Controls.Add(this.pthtb);
             this.Controls.Add(this.bwsbtn1);
             this.Controls.Add(this.pbtn);
@@ -136,7 +166,9 @@
         private System.Windows.Forms.Button pbtn;
         private System.Windows.Forms.Button bwsbtn1;
         private System.Windows.Forms.TextBox pthtb;
-        private System.Windows.Forms.Button pbtnsp;
+        private System.Windows.Forms.Button clrbtn;
+        private System.Windows.Forms.RadioButton toprb;
+        private System.Windows.Forms.RadioButton btmrb;
     }
 }
 
